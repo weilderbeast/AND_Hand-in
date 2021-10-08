@@ -13,10 +13,10 @@ Main goal of this app is to work fast and reliable, be lightweight and simple to
 - As a user, I want to log-in using a username&password combination, to see my contacts and messages.
 - As a user, I want to be able to send a friend request to another user, so they can be added to my contacts list.
 - As a user, I want to be able to delete a contact from my list, so I can remove unwanted users.
-- - As a user, I want to be able to send plain text messages to another user, so I can communicate with them.
+- As a user, I want to be able to send plain text messages to another user, so I can communicate with them.
 - As a user, I want to be able to choose between various styled themes for my app, so I can personalize my experience.
 - As a user, I want to be able to receive notifications of incoming messages, so I can quickly reply to them.
-- - As a user, I want to be able to change the password of my account, to keep my credentials up-to-date and secure.
+- As a user, I want to be able to change the password of my account, to keep my credentials up-to-date and secure.
 - As a user, I want to be able to block a contact from ever getting in touch with me again, so I can completely remove unwanted users.
 - As a user, I want to be able to send a message request to a user by using their username, so I can notify them without having to add them as a friend first, in case of emergency.
 - As a user, I want to be able to see a user's active status, so I can notice if they are available for talking or not.
