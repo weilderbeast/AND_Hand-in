@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="github.bob.andhand_in.ui.fragments.chats.ChatsFragment"
+        android:label="Telegraph"
+        tools:layout="@layout/fragment_chats" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="github.bob.andhand_in.ui.fragments.new_group.NewGroupFragment"
+        android:label="@string/groups"
+        tools:layout="@layout/fragment_new_group" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="github.bob.andhand_in.ui.fragments.contacts.ContactsFragment"
+        android:label="@string/contacts"
+        tools:layout="@layout/fragment_contacts" />
+</navigation>

@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ANDHandin/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.5148148148148148" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_register.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/app_bar_main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/appbar_style.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/chat_display_layout.xml" value="0.49444444444444446" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/content_main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_contacts.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_gallery.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_home.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_slideshow.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/nav_header_main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/menu/activity_main_drawer.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/menu/main_menu.xml" value="0.5541666666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
