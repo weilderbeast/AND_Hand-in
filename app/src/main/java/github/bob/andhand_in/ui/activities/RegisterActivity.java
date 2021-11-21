@@ -14,15 +14,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 import github.bob.andhand_in.R;
-import github.bob.andhand_in.res.user.CurrentUser;
 import github.bob.andhand_in.res.user.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button sign_up;
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         init();
     }
@@ -80,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             email_layout.setError("Needs to be of pattern email@email.com");
             email_layout.requestFocus();
             return;
@@ -111,22 +120,45 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-
+                            User user = setUserData(mAuth.getCurrentUser());
+                            db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
                             //get to main menu activity
                             startActivity(new Intent(RegisterActivity.this, MainMenuActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            try{
+                                throw task.getException();
+                            } catch (FirebaseAuthUserCollisionException e){
+                                email_layout.setError("Email already in use.");
+                                email_layout.requestFocus();
+                            } catch (FirebaseAuthInvalidCredentialsException e){
+                                email_layout.setError("Email is invalid.");
+                                email_layout.requestFocus();
+                            } catch (Exception e) {
+                                Log.w(TAG, "createUserWithEmail:failure", e);
+                            }
                         }
                     }
                 });
+    }
 
-
-        //TODO this would be turned into a request to Firebase to retrieve the user data with specified inputs
-        CurrentUser.getInstance().setUser(new User(email, password));
+    private User setUserData(FirebaseUser user){
+        User actualUser = new User(user.getEmail(), user.getUid());
+        actualUser.setDisplayName(user.getDisplayName());
+        actualUser.setEmailVerified(user.isEmailVerified());
+        actualUser.setPhoneNumber(user.getPhoneNumber());
+        actualUser.setPhotoUrl(user.getPhotoUrl());
+        return actualUser;
     }
 
 }

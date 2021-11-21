@@ -1,69 +1,70 @@
 package github.bob.andhand_in.res.user;
 
+import android.net.Uri;
+
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.net.URI;
 import java.util.ArrayList;
 
 public class User {
-    private String username;
-    private String password;
-    private String name;
-    private ShapeableImageView icon;
-    private UserPreferences preferences;
-    private ArrayList<User> friends_list;
+    private String email;
+    private String UID;
+    private String displayName;
+    private boolean emailVerified;
+    private String phoneNumber;
+    private Uri photoUrl;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public User(String email, String UID) {
+        this.email = email;
+        this.UID = UID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUID() {
+        return UID;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
-    public UserPreferences getPreferences() {
-        return preferences;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setPreferences(UserPreferences preferences) {
-        this.preferences = preferences;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public ArrayList<User> getFriends_list() {
-        return friends_list;
+    public boolean isEmailVerified() {
+        return emailVerified;
     }
 
-    public void setFriends_list(ArrayList<User> friends_list) {
-        this.friends_list = friends_list;
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
     }
 
-    public String getName() {
-        return name;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public ShapeableImageView getIcon() {
-        //TODO change this to contain a resId or base64 encoding for images
-        return icon;
+    public Uri getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setIcon(ShapeableImageView icon) {
-        //TODO change this to contain a resId or base65 encoding for images
-        this.icon = icon;
+    public void setPhotoUrl(Uri photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }
