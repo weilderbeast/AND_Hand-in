@@ -36,7 +36,7 @@ public class ChatsFragment extends Fragment {
         chat_list = rootView.findViewById(R.id.chats_recycle_view);
         chat_list.hasFixedSize();
         chat_list.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        adapter = new ChatListAdapter();
+        adapter = new ChatListAdapter(getContext());
         chat_list.setAdapter(adapter);
         viewModel = new ViewModelProvider(this).get(ChatsFragmentViewModel.class);
         viewModel.getChats().observe(getViewLifecycleOwner(), new Observer<List<Chat>>() {

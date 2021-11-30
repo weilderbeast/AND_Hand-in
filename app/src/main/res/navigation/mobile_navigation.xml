@@ -22,4 +22,19 @@
         android:name="github.bob.andhand_in.ui.fragments.contacts.ContactsFragment"
         android:label="@string/contacts"
         tools:layout="@layout/fragment_contacts" />
+    <fragment
+        android:id="@+id/contactsAddFragment"
+        android:name="github.bob.andhand_in.ui.fragments.contacts.add.ContactsAddFragment"
+        android:label="contacts_add_fragment"
+        tools:layout="@layout/contacts_add_fragment" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="github.bob.andhand_in.ui.fragments.chats.chat.ChatFragment"
+        android:label="chat_fragment"
+        tools:layout="@layout/chat_fragment" />
+    <fragment
+        android:id="@+id/friendRequests"
+        android:name="github.bob.andhand_in.ui.fragments.friend_requests.FriendRequests"
+        android:label="friend_requests_fragment"
+        tools:layout="@layout/friend_requests_fragment" />
 </navigation>

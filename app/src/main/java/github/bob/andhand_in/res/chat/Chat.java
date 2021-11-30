@@ -1,60 +1,47 @@
 package github.bob.andhand_in.res.chat;
 
-import androidx.annotation.DrawableRes;
-
-import java.util.ArrayList;
-
-import github.bob.andhand_in.res.user.User;
-
 public class Chat {
-    String username;
-    String last_sent_text;
-    String last_sent_text_timestamp;
-    @DrawableRes
-    int user_icon;
+    private String user;
+    private String last_text;
+    private String timestamp;
+    private int profile_picture;
 
-    public Chat(String username, String last_sent_text, String last_sent_text_timestamp, int user_icon) {
-        this.username = username;
-        this.last_sent_text = last_sent_text;
-        this.last_sent_text_timestamp = last_sent_text_timestamp;
-        this.user_icon = user_icon;
+    public Chat(String user, String last_text, String timestamp, int profile_picture) {
+        this.user= user;
+        this.last_text = last_text;
+        this.timestamp = timestamp;
+        this.profile_picture = profile_picture;
     }
 
-    public Chat(String username, String last_sent_text, String last_sent_text_timestamp) {
-        this.username = username;
-        this.last_sent_text = last_sent_text;
-        this.last_sent_text_timestamp = last_sent_text_timestamp;
+    public String getUser() {
+        return user;
     }
 
-    public String getUsername() {
-        return username;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getLast_text() {
+        return last_text;
     }
 
-    public String getLast_sent_text() {
-        return last_sent_text;
+    public void setLast_text(String last_text) {
+        this.last_text = last_text;
     }
 
-    public void setLast_sent_text(String last_sent_text) {
-        this.last_sent_text = last_sent_text;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public String getLast_sent_text_timestamp() {
-        return last_sent_text_timestamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public void setLast_sent_text_timestamp(String last_sent_text_timestamp) {
-        this.last_sent_text_timestamp = last_sent_text_timestamp;
+    public int getProfile_picture() {
+        return profile_picture;
     }
 
-    public int getUser_icon() {
-        return user_icon;
-    }
-
-    public void setUser_icon(int user_icon) {
-        this.user_icon = user_icon;
+    public void setProfile_picture(int profile_picture) {
+        this.profile_picture = profile_picture;
     }
 }

@@ -6,6 +6,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String email;
@@ -14,10 +15,16 @@ public class User {
     private boolean emailVerified;
     private String phoneNumber;
     private Uri photoUrl;
+    private List<String> contactRefs;
 
     public User(String email, String UID) {
         this.email = email;
         this.UID = UID;
+        contactRefs = new ArrayList<>();
+    }
+
+    public User(){
+        contactRefs = new ArrayList<>();
     }
 
     public String getEmail() {
@@ -66,5 +73,13 @@ public class User {
 
     public void setPhotoUrl(Uri photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public List<String> getContacts() {
+        return contactRefs;
+    }
+
+    public void setContacts(List<String> contactRefs) {
+        this.contactRefs = contactRefs;
     }
 }

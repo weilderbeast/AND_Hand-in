@@ -53,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mAuth.getCurrentUser() != null){
+            finish();
+        }
+    }
+
     private void init() {
         //TODO create a settings view
         email = findViewById(R.id.email_edit_text);

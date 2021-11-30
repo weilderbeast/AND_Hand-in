@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_baseline_chat_24"
             android:title="@string/chats" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/friendRequests"
             android:icon="@drawable/ic_baseline_group_add_24"
-            android:title="@string/groups" />
+            android:title="Friend Requests" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_baseline_contacts_24"

@@ -1,49 +1,50 @@
 package github.bob.andhand_in.res.chat;
 
-import java.util.Calendar;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
 
 public class Message {
-    private String sender;
-    private String receiver;
-    private String body;
-    private String timestamp;
+    private String content;
+    private DocumentReference sender;
+    private DocumentReference receiver;
+    private Timestamp timestamp;
 
-    public Message(String sender, String receiver, String body) {
-        this.sender = sender;
-        this.receiver = receiver;
-        this.body = body;
-        timestamp = Calendar.getInstance().getTime().toString();
+    public Message(){
+
     }
 
-    public String getSender() {
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public DocumentReference getSender() {
         return sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(DocumentReference sender) {
         this.sender = sender;
     }
 
-    public String getReceiver() {
+    public DocumentReference getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(String receiver) {
+    public void setReceiver(DocumentReference receiver) {
         this.receiver = receiver;
     }
 
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 }

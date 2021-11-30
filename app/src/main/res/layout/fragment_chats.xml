@@ -11,4 +11,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?attr/actionBarSize" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/main_fab"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/chats_recycle_view"
+        app:layout_constraintEnd_toEndOf="@+id/main_fab"
+        app:srcCompat="@drawable/ic_baseline_chat_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:fabSize="mini"
+
+        app:layout_anchor="@+id/main_fab"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/chats_recycle_view"
+        app:layout_constraintEnd_toEndOf="@+id/main_fab"
+        app:srcCompat="@drawable/ic_baseline_group_add_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/main_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/chats_recycle_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_create_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="github.bob.andhand_in">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ANDHandin">
+        <activity
+            android:name=".ui.activities.chat.ChatActivity"
+            android:exported="true"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/Theme.ANDHandin.NoActionBar" />
         <activity
             android:name=".ui.activities.MainMenuActivity"
             android:exported="true"
@@ -19,7 +26,8 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,4 +35,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

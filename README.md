@@ -9,8 +9,8 @@ of text messaging and the outright stupidity huge companies like Facebook and Go
 Main goal of this app is to work fast and reliable, be lightweight and simple to use. I plan on using phone numbers for authentication at some point to make it more secure and easier to use. I will do my best to also ensure *some* security, wherever possible.
 
 # List of requirements ✔️
-- As a user, I want to register using a email&password combination, to have a private account.
-- As a user, I want to log-in using a email&password combination, to see my contacts and messages.
+- As a user, I want to register using a email&password combination, to have a private account. ✔
+- As a user, I want to log-in using a email&password combination, to see my contacts and messages. ✔
 - As a user, I want to be able to send a friend request to another user, so they can be added to my contacts list.
 - As a user, I want to be able to delete a contact from my list, so I can remove unwanted users.
 - As a user, I want to be able to send plain text messages to another user, so I can communicate with them.
@@ -34,3 +34,6 @@ I know the list is big for the scope and time allocated to this project, but I a
 working on this repository after the project period ends, to further sharpen my skills.
 
 Also, Bulbasaur is the best starter pokemon hands down. 🐢
+
+#Known bugs
+- While searching for a user to be added to contacts, it will be displayed twice.

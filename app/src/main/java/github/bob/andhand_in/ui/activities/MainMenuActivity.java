@@ -1,6 +1,9 @@
 package github.bob.andhand_in.ui.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -41,6 +44,8 @@ public class MainMenuActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
 
+    //TODO create a view where the user can complete his profile. Also add a toast if the profile is not completed on sign-in.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +63,7 @@ public class MainMenuActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.friendRequests, R.id.nav_slideshow, R.id.contactsAddFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_menu);
@@ -82,6 +87,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void init(){
         initFabs();
         initUserData();
+        createNotificationChannel();
     }
 
     private void initUserData(){
@@ -127,5 +133,17 @@ public class MainMenuActivity extends AppCompatActivity {
         mAuth.signOut();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    //TODO Figure out notifications?
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("ID", "Telegraph" , importance);
+            channel.setDescription("Telegraph");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
