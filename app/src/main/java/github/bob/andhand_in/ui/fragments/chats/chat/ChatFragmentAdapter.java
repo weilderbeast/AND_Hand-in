@@ -36,7 +36,7 @@ public class ChatFragmentAdapter extends RecyclerView.Adapter<ChatFragmentAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.text.setText(messages.get(position).getContent());
-        holder.timestamp.setText("12:45");
+        holder.timestamp.setText("");
     }
 
     @Override

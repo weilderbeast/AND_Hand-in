@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/friendRequests"
         android:name="github.bob.andhand_in.ui.fragments.friend_requests.FriendRequests"
-        android:label="friend_requests_fragment"
+        android:label="Friend Requests"
         tools:layout="@layout/friend_requests_fragment" />
     <fragment
         android:id="@+id/updateProfile"
