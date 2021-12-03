@@ -1,19 +1,19 @@
 package github.bob.andhand_in.res.chat;
 
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.Date;
 
-public class Message {
+public class Message implements Comparable<Message>{
     private String content;
-    private DocumentReference sender;
-    private DocumentReference receiver;
-    private Timestamp timestamp;
+    private String senderID;
+    private Date timestamp = new Date();
 
     public Message(){
+        timestamp = new Date();
+    }
 
+    public Message(String content, String sender){
+        this.content = content;
+        this.senderID = sender;
     }
 
     public String getContent() {
@@ -24,27 +24,21 @@ public class Message {
         this.content = content;
     }
 
-    public DocumentReference getSender() {
-        return sender;
+    public String getSenderID() {
+        return senderID;
     }
 
-    public void setSender(DocumentReference sender) {
-        this.sender = sender;
+    public void setSenderID(String senderID) {
+        this.senderID = senderID;
     }
 
-    public DocumentReference getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(DocumentReference receiver) {
-        this.receiver = receiver;
-    }
-
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+
+    @Override
+    public int compareTo(Message message) {
+        return getTimestamp().compareTo(message.getTimestamp());
     }
 }

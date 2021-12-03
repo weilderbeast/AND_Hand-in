@@ -7,14 +7,17 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import github.bob.andhand_in.dao.FriendDAO;
 import github.bob.andhand_in.dao.UserDAO;
 import github.bob.andhand_in.res.user.User;
 
 public class ContactsAddViewModel extends ViewModel {
+    private FriendDAO friendDAO;
     private UserDAO userDAO;
     private MutableLiveData<List<User>> user_search_complete;
 
     public ContactsAddViewModel(){
+        friendDAO = FriendDAO.getInstance();
         userDAO = UserDAO.getInstance();
         user_search_complete = new MutableLiveData<>();
     }
@@ -34,6 +37,6 @@ public class ContactsAddViewModel extends ViewModel {
     }
 
     public void addUserAsContact(String uid) {
-        userDAO.sendFriendRequest(uid);
+        friendDAO.sendFriendRequest(uid);
     }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -37,9 +38,11 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputEditText email;
     TextInputEditText password;
     TextInputEditText re_password;
+    TextInputEditText displayName;
     TextInputLayout email_layout;
     TextInputLayout password_layout;
     TextInputLayout re_password_layout;
+    TextInputLayout displayName_layout;
     Button sign_up;
 
     private FirebaseAuth mAuth;
@@ -60,9 +63,13 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.email_edit_text);
         email_layout = findViewById(R.id.email);
         password = findViewById(R.id.password_edit_text);
+        password.setTransformationMethod(new PasswordTransformationMethod());
         password_layout = findViewById(R.id.password);
         re_password = findViewById(R.id.repeat_password_edit_text);
+        re_password.setTransformationMethod(new PasswordTransformationMethod());
         re_password_layout = findViewById(R.id.repeat_password);
+        displayName = findViewById(R.id.displayName_edit_text);
+        displayName_layout = findViewById(R.id.displayName);
         sign_up = findViewById(R.id.sign_up_button);
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
         String re_password = this.re_password.getText().toString();
+        String displayName = this.displayName.getText().toString();
 
         if (email.isEmpty()) {
             email_layout.setError("Cannot be empty");
@@ -87,6 +95,16 @@ public class RegisterActivity extends AppCompatActivity {
             email_layout.setError("Has to be longer than 5 characters");
             email_layout.requestFocus();
             return;
+        }
+
+        if(displayName.length() < 3){
+            displayName_layout.setError("Has to be longer than 3 characters");
+            displayName_layout.requestFocus();
+        }
+
+        if(displayName.length() > 50){
+            displayName_layout.setError("Woah there buckaroo, too many characters");
+            displayName_layout.requestFocus();
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -121,6 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             User user = setUserData(mAuth.getCurrentUser());
+                            user.setDisplayName(displayName);
                             db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
@@ -156,8 +175,18 @@ public class RegisterActivity extends AppCompatActivity {
         User actualUser = new User(user.getEmail(), user.getUid());
         actualUser.setDisplayName(user.getDisplayName());
         actualUser.setEmailVerified(user.isEmailVerified());
-        actualUser.setPhoneNumber(user.getPhoneNumber());
-        actualUser.setPhotoUrl(user.getPhotoUrl());
+        if(user.getPhoneNumber() != null){
+            actualUser.setPhoneNumber(user.getPhoneNumber());
+        } else {
+            actualUser.setPhoneNumber("");
+        }
+
+        if(user.getPhotoUrl() != null){
+            actualUser.setPhotoUrl(user.getPhotoUrl().toString());
+        } else {
+            actualUser.setPhotoUrl("");
+        }
+
         return actualUser;
     }
 

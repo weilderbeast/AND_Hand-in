@@ -32,6 +32,7 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/edit_profile_button"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:insetLeft="0dp"
@@ -54,7 +55,7 @@
 
 
     <TextView
-        android:id="@+id/header_username"
+        android:id="@+id/nav_header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -62,7 +63,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/header_email"
+        android:id="@+id/nav_header_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />

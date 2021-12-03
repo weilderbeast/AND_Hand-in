@@ -1,18 +1,16 @@
 package github.bob.andhand_in.ui.activities;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,25 +24,24 @@ import com.google.firebase.auth.FirebaseUser;
 
 import github.bob.andhand_in.MainActivity;
 import github.bob.andhand_in.R;
+import github.bob.andhand_in.dao.NotificationDAO;
+
 import github.bob.andhand_in.databinding.ActivityMainMenuBinding;
+import github.bob.andhand_in.res.app.NotificationManager;
 
 
 public class MainMenuActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainMenuBinding binding;
-    private FloatingActionButton main_fab;
-    private FloatingActionButton text_fab;
-    private FloatingActionButton group_fab;
-    private boolean isFabOpen;
     private ShapeableImageView user_icon;
     private TextView user_email;
     private TextView user_username;
-
+    private Button edit_profile_button;
+    private NotificationDAO notificationDAO;
+    private NotificationManager notificationManager;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-
-    //TODO create a view where the user can complete his profile. Also add a toast if the profile is not completed on sign-in.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +55,18 @@ public class MainMenuActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        init();
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.friendRequests, R.id.nav_slideshow, R.id.contactsAddFragment)
+                R.id.nav_home, R.id.friendRequests, R.id.contactsFragment, R.id.contactsAddFragment, R.xml.root_preferences)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_menu);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        init();
     }
 
     @Override
@@ -84,50 +82,47 @@ public class MainMenuActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void init(){
-        initFabs();
+    private void init() {
         initUserData();
-        createNotificationChannel();
+        notifications();
     }
 
-    private void initUserData(){
-        user_icon = findViewById(R.id.header_icon);
-        user_email = findViewById(R.id.header_email);
-        user_username = findViewById(R.id.header_username);
-
-        //TODO this does not work, why?
-        //user_email.setText(user.getEmail());
-
-    }
-
-    private void initFabs(){
-        main_fab = findViewById(R.id.main_fab);
-        text_fab = findViewById(R.id.fab_text);
-        group_fab = findViewById(R.id.fab_group);
-        isFabOpen = false;
-        main_fab.setOnClickListener(new View.OnClickListener() {
+    //TODO move this within it's own class and figure out context
+    private void notifications() {
+        notificationDAO = NotificationDAO.getInstance();
+        notificationDAO.listenForFriendNotifications();
+        notificationManager = NotificationManager.getInstance();
+        notificationDAO.getFriendNotification().observe(this, new Observer<String>() {
             @Override
-            public void onClick(View view) {
-                if(!isFabOpen){
-                    showFab();
-                } else {
-                    closeFab();
-                }
+            public void onChanged(String s) {
+                notificationManager.createFriendRequestNotification(getApplicationContext(), "Friend request", s + " wants to be your friend!", R.drawable.ic_baseline_person_add_24);
             }
         });
     }
 
-    private void showFab(){
-        isFabOpen = true;
-        text_fab.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
-        group_fab.animate().translationY(-getResources().getDimension(R.dimen.standard_105));
+    @Override
+    protected void onStart() {
+        super.onStart();
+        user_icon = findViewById(R.id.header_icon);
+        user_email = findViewById(R.id.nav_header_email);
+        user_username = findViewById(R.id.nav_header_username);
+        edit_profile_button = findViewById(R.id.edit_profile_button);
+        //TODO any items here are null, why?
+//        edit_profile_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Navigation.findNavController(view).navigate(R.id.updateProfile);
+//            }
+//        });
+//        user_email.setText(user.getEmail());
+//        user_username.setText(user.getDisplayName());
+
     }
 
-    private void closeFab(){
-        isFabOpen = false;
-        text_fab.animate().translationY(0);
-        group_fab.animate().translationY(0);
+    private void initUserData() {
+
     }
+
 
     public void logout(MenuItem item) {
         mAuth.signOut();
@@ -135,15 +130,4 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //TODO Figure out notifications?
-
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("ID", "Telegraph" , importance);
-            channel.setDescription("Telegraph");
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
 }

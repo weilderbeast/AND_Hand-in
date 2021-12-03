@@ -11,8 +11,9 @@ Main goal of this app is to work fast and reliable, be lightweight and simple to
 # List of requirements ✔️
 - As a user, I want to register using a email&password combination, to have a private account. ✔
 - As a user, I want to log-in using a email&password combination, to see my contacts and messages. ✔
-- As a user, I want to be able to send a friend request to another user, so they can be added to my contacts list.
-- As a user, I want to be able to delete a contact from my list, so I can remove unwanted users.
+- As a user, I want to be able to send a friend request to another user, so they can be added to my contacts list. ✔
+- As a user, I want to be able to delete a contact from my list, so I can remove unwanted users. ✔
+- As a user, I want to be able to receive notifications of incoming friend requests, so I can quickly decide on accepting them or not. ✔
 - As a user, I want to be able to send plain text messages to another user, so I can communicate with them.
 - As a user, I want to be able to choose between various styled themes for my app, so I can personalize my experience.
 - As a user, I want to be able to receive notifications of incoming messages, so I can quickly reply to them.
@@ -35,5 +36,5 @@ working on this repository after the project period ends, to further sharpen my 
 
 Also, Bulbasaur is the best starter pokemon hands down. 🐢
 
-#Known bugs
+# Known bugs 🐛
 - While searching for a user to be added to contacts, it will be displayed twice.

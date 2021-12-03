@@ -37,6 +37,7 @@ public class ContactsAddFragmentAdapter extends RecyclerView.Adapter<ContactsAdd
     }
 
     public void Update(List<User> users) {
+        searched_users.clear();
         searched_users = users;
         notifyDataSetChanged();
     }

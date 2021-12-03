@@ -5,29 +5,30 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import github.bob.andhand_in.dao.FriendDAO;
 import github.bob.andhand_in.dao.UserDAO;
 import github.bob.andhand_in.res.user.User;
 
 public class FriendRequestsViewModel extends ViewModel {
-    private UserDAO userDAO;
+    private FriendDAO friendDAO;
 
     public FriendRequestsViewModel() {
-        userDAO = UserDAO.getInstance();
+        friendDAO = FriendDAO.getInstance();
     }
 
     public void acceptFriendRequest(User user) {
-        userDAO.acceptFriendRequest(user);
+        friendDAO.acceptFriendRequest(user);
     }
 
     public void declineFriendRequest(User user) {
-        userDAO.declineFriendRequest(user);
+        friendDAO.declineFriendRequest(user);
     }
 
     public void retrieveFriendRequests() {
-        userDAO.getFriendRequests();
+        friendDAO.getFriendRequests();
     }
 
     public MutableLiveData<List<User>> listenForFriendRequests(){
-        return userDAO.getFriendRequestsLiveData();
+        return friendDAO.getFriendRequestsLiveData();
     }
 }

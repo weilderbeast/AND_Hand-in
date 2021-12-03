@@ -58,16 +58,9 @@ public class ContactsAddFragment extends Fragment {
         adapter = new ContactsAddFragmentAdapter(getContext(), mViewModel);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        //TODO this happens twice, why?
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                mViewModel.getSearchedUser().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
-                    @Override
-                    public void onChanged(List<User> users) {
-                        adapter.Update(users);
-                    }
-                });
                 mViewModel.searchUser(query);
                 return false;
             }
@@ -77,5 +70,6 @@ public class ContactsAddFragment extends Fragment {
                 return false;
             }
         });
+        mViewModel.getSearchedUser().observe(getViewLifecycleOwner(), adapter::Update);
     }
 }

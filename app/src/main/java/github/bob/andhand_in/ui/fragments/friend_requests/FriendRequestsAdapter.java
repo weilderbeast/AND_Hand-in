@@ -58,12 +58,16 @@ public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAd
             @Override
             public void onClick(View view) {
                 viewModel.acceptFriendRequest(requests.get(holder.getAdapterPosition()));
+                requests.remove(holder.getAdapterPosition());
+                notifyDataSetChanged();
             }
         });
         holder.reject_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 viewModel.declineFriendRequest(requests.get(holder.getAdapterPosition()));
+                requests.remove(holder.getAdapterPosition());
+                notifyDataSetChanged();
             }
         });
     }

@@ -14,13 +14,15 @@ public class User {
     private String displayName;
     private boolean emailVerified;
     private String phoneNumber;
-    private Uri photoUrl;
+    private String photoUrl;
     private List<String> contactRefs;
+    private List<String> conversationRefs;
 
     public User(String email, String UID) {
         this.email = email;
         this.UID = UID;
         contactRefs = new ArrayList<>();
+        conversationRefs = new ArrayList<>();
     }
 
     public User(){
@@ -67,11 +69,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Uri getPhotoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(Uri photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
@@ -81,5 +83,13 @@ public class User {
 
     public void setContacts(List<String> contactRefs) {
         this.contactRefs = contactRefs;
+    }
+
+    public List<String> getConversationRefs() {
+        return conversationRefs;
+    }
+
+    public void setConversationRefs(List<String> conversationRefs) {
+        this.conversationRefs = conversationRefs;
     }
 }

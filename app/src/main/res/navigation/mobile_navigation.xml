@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_new_group" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/contactsFragment"
         android:name="github.bob.andhand_in.ui.fragments.contacts.ContactsFragment"
         android:label="@string/contacts"
         tools:layout="@layout/fragment_contacts" />
@@ -37,4 +37,9 @@
         android:name="github.bob.andhand_in.ui.fragments.friend_requests.FriendRequests"
         android:label="friend_requests_fragment"
         tools:layout="@layout/friend_requests_fragment" />
+    <fragment
+        android:id="@+id/updateProfile"
+        android:name="github.bob.andhand_in.ui.fragments.updateProfile.UpdateProfile"
+        android:label="update_profile_fragment"
+        tools:layout="@layout/update_profile_fragment" />
 </navigation>

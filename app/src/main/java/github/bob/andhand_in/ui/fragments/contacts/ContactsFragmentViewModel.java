@@ -6,26 +6,27 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import github.bob.andhand_in.dao.ContactDAO;
 import github.bob.andhand_in.dao.UserDAO;
 import github.bob.andhand_in.res.user.User;
 
 public class ContactsFragmentViewModel extends ViewModel {
 
-    private UserDAO userDAO;
+    private ContactDAO contactDAO;
 
     public ContactsFragmentViewModel() {
-        userDAO = UserDAO.getInstance();
+        contactDAO = ContactDAO.getInstance();
     }
 
     public void queryContacts(){
-        userDAO.getContacts();
+        contactDAO.getContacts();
     }
 
     public LiveData<List<User>> listenForContacts(){
-       return userDAO.getContactsLiveData();
+       return contactDAO.getContactsLiveData();
     }
 
     public void removeContact(String displayName) {
-        userDAO.removeContact(displayName);
+        contactDAO.removeContact(displayName);
     }
 }

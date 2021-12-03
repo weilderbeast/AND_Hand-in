@@ -13,11 +13,11 @@
             android:icon="@drawable/ic_baseline_group_add_24"
             android:title="Friend Requests" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/contactsFragment"
             android:icon="@drawable/ic_baseline_contacts_24"
             android:title="@string/contacts" />
         <item
-            android:id="@+id/nav_slideshow2"
+            android:id="@+id/root_preferences"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/settings" />
         <item

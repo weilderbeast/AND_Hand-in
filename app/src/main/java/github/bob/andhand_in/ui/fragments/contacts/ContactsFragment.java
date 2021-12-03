@@ -54,12 +54,7 @@ public class ContactsFragment extends Fragment {
         contactsFragmentViewModel.queryContacts();
         contactsFragmentViewModel
                 .listenForContacts()
-                .observe(getViewLifecycleOwner(), new Observer<List<User>>() {
-                    @Override
-                    public void onChanged(List<User> users) {
-                        adapter.update(users);
-                    }
-                });
+                .observe(getViewLifecycleOwner(),adapter::update);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +68,7 @@ public class ContactsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         //TODO do this everywhere needed to avoid performance issues
-        contactsFragmentViewModel.listenForContacts().removeObservers(getViewLifecycleOwner());
+        contactsFragmentViewModel.listenForContacts().removeObservers(this);
         binding = null;
     }
 }

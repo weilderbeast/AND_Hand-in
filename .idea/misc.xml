@@ -3,34 +3,44 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANDHandin/app/src/main/res/drawable-v24/rounded_message.xml" value="0.5703125" />
         <entry key="..\:/ANDHandin/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.5148148148148148" />
         <entry key="..\:/ANDHandin/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.5703125" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_chat.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_main_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_register.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/activity_settings.xml" value="0.3307291666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/app_bar_main_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/appbar_style.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/chat_display_layout.xml" value="0.49444444444444446" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/chat_display_layout_simple.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/chat_fragment.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/chat_message_layout.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/chat_toolbar.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/contact_add_display_layout.xml" value="0.5" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/contact_display_layout.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/contacts_add_fragment.xml" value="0.5401041666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/content_chat.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/content_main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/content_settings.xml" value="0.3307291666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_add_contacts.xml" value="0.5401041666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_chats.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_contacts.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_first.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_gallery.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_home.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_second.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_settings.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/fragment_slideshow.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/friend_request_layout.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/friend_requests_fragment.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/layout/nav_header_main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/rounded_message.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/layout/update_profile_fragment.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/menu/activity_main_drawer.xml" value="0.5541666666666667" />
         <entry key="..\:/ANDHandin/app/src/main/res/menu/main_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/ANDHandin/app/src/main/res/xml/root_preferences.xml" value="0.5541666666666667" />
       </map>
     </option>
   </component>

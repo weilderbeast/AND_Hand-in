@@ -1,5 +1,6 @@
 package github.bob.andhand_in.ui.fragments.contacts;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -52,6 +55,18 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
             @Override
             public void onClick(View view) {
                 viewModel.removeContact(users.get(holder.getAdapterPosition()).getUID());
+                users.remove(holder.getAdapterPosition());
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("username", holder.text.getText().toString());
+                bundle.putString("uid", users.get(holder.getAdapterPosition()).getUID());
+                Navigation.findNavController(view).navigate(R.id.chatFragment, bundle);
             }
         });
     }
@@ -70,12 +85,14 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         ShapeableImageView imageView;
         TextView text;
         Button remove_contact;
+        ConstraintLayout item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.contacts_user_icon);
             text = itemView.findViewById(R.id.contacts_username);
             remove_contact = itemView.findViewById(R.id.remove_contact);
+            item = itemView.findViewById(R.id.contact_item);
         }
     }
 }
