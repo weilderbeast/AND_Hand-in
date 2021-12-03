@@ -81,58 +81,43 @@ public class FriendDAO {
                         for (String id : requestId) {
                             if (id.equals(user.getUID())) {
                                 contactDAO.addUserAsContact(id);
-                                removeFriendRequest(id);
+                                declineFriendRequest(id);
                             }
                         }
                     }
                 });
     }
 
-    private void removeFriendRequest(String id) {
+    public void declineFriendRequest(String id) {
+        System.out.println("****************ID IS" + id);
         firebaseFirestore
                 .collection("friendRequests")
-                .document(getCurrentUser())
-                .delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        System.out.println("Everyhing went well");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("Something went wrong: " + e.getMessage());
-                    }
-                });
-    }
-
-    public void declineFriendRequest(User user) {
-        firebaseFirestore
-                .collection("friendRequests")
-                .whereEqualTo("requestId", user.getUID())
+                .whereArrayContains("requestId", id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        DocumentReference reference = task.getResult().getDocuments().get(0).getReference();
-
-                        firebaseFirestore
-                                .collection("friendRequests")
-                                .document(reference.getPath())
-                                .delete()
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Log.d(TAG, "Everything went well");
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d(TAG, "Failed with " + e.getMessage());
-                                    }
-                                });
+                        if (!task.getResult().getDocuments().isEmpty()) {
+                            DocumentReference reference = task.getResult().getDocuments().get(0).getReference();
+                            firebaseFirestore
+                                    .collection("friendRequests")
+                                    .document(reference.getId())
+                                    .delete()
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Log.d(TAG, "Everything went well");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d(TAG, "Failed with " + e.getMessage());
+                                        }
+                                    });
+                        } else {
+                            System.out.println("Query returned with no documents");
+                        }
                     }
                 });
     }

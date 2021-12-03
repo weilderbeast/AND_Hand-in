@@ -21,7 +21,7 @@ public class FriendRequestsViewModel extends ViewModel {
     }
 
     public void declineFriendRequest(User user) {
-        friendDAO.declineFriendRequest(user);
+        friendDAO.declineFriendRequest(user.getUID());
     }
 
     public void retrieveFriendRequests() {
