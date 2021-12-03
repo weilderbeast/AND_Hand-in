@@ -53,20 +53,18 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.chat_display_layout_simple, parent, false);
+        View view = inflater.inflate(R.layout.chat_display_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.chat_user.setText(users.get(position).getDisplayName());
-//        holder.chat_last_sent.setText(chats.get(position).getLast_sent_text());
-//        holder.chat_timestamp.setText(chats.get(position).getTimestamp());
-//        if(chats.get(position).getUser().getPhotoUrl() == null){
-//            holder.chat_user_icon.setImageResource(R.drawable.ic_baseline_person_24);
-//        } else {
-//            Glide.with(fragment).load(chats.get(position).getUser().getPhotoUrl()).into(holder.chat_user_icon);
-//        }
+        if(users.get(position).getPhotoUrl().isEmpty() || users.get(position).getPhotoUrl() == null){
+            holder.chat_user_icon.setImageResource(R.drawable.ic_baseline_person_24);
+        } else {
+            Glide.with(fragment).load(users.get(position).getPhotoUrl()).into(holder.chat_user_icon);
+        }
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,21 +84,14 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView chat_user;
-//        TextView chat_last_sent;
-//        TextView chat_timestamp;
-//        ShapeableImageView chat_user_icon;
+        ShapeableImageView chat_user_icon;
         LinearLayout layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            chat_user = itemView.findViewById(R.id.username_layout_simple);
-//            chat_last_sent = itemView.findViewById(R.id.chat_last_text);
-//            chat_timestamp = itemView.findViewById(R.id.chat_last_text_timestamp);
-//            chat_user_icon = itemView.findViewById(R.id.chat_user_icon);
-            layout = itemView.findViewById(R.id.chat_item_simple);
-
-
+            chat_user = itemView.findViewById(R.id.chat_user);
+            chat_user_icon = itemView.findViewById(R.id.chat_user_icon);
+            layout = itemView.findViewById(R.id.chat_item);
         }
     }
 }

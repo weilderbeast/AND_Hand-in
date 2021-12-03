@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/contactsAddFragment"
         android:name="github.bob.andhand_in.ui.fragments.contacts.add.ContactsAddFragment"
-        android:label="contacts_add_fragment"
+        android:label="Add Contacts"
         tools:layout="@layout/contacts_add_fragment" />
     <fragment
         android:id="@+id/chatFragment"
