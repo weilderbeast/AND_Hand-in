@@ -1,6 +1,8 @@
 package github.bob.andhand_in.ui.fragments.chats.chat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -35,9 +37,25 @@ public class ChatFragment extends Fragment {
     private ImageView send_button;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(SharedChatViewModel.class);
+        viewModel.fetchMessages(getArguments().getString("uid"));
+        viewModel.subscribeToMessages(getArguments().getString("uid"));
+        viewModel.getMessages().removeObservers(this);
+        viewModel.getMessages().observe(this, new Observer<List<Message>>() {
+            @Override
+            public void onChanged(List<Message> texts) {
+                adapter.update(texts);
+                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(SharedChatViewModel.class);
+
         binding = ChatFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         init(root);
@@ -51,15 +69,6 @@ public class ChatFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.scrollToPosition(adapter.getItemCount() - 1);
         viewModel = new ViewModelProvider(this).get(SharedChatViewModel.class);
-        viewModel.getMessages().observe(getViewLifecycleOwner(), new Observer<List<Message>>() {
-            @Override
-            public void onChanged(List<Message> texts) {
-                adapter.update(texts);
-                recyclerView.scrollToPosition(adapter.getItemCount() - 1);
-            }
-        });
-        viewModel.fetchMessages(getArguments().getString("uid"));
-
         chat_text = root.findViewById(R.id.chat_text);
         send_button = root.findViewById(R.id.send_button);
         send_button.setOnClickListener(new View.OnClickListener() {
@@ -73,15 +82,12 @@ public class ChatFragment extends Fragment {
         if(getArguments().getString("username") != null){
             user = getArguments().getString("username");
         }
-
-        viewModel.subscribeToMessages(getArguments().getString("uid"));
-
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(user);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        viewModel.getMessages().removeObservers(this);
+    public void onPause() {
+        super.onPause();
+        //viewModel.getMessages().removeObservers(this);
     }
 }

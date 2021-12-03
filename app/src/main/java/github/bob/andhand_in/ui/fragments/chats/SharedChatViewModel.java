@@ -22,10 +22,6 @@ public class SharedChatViewModel extends ViewModel {
         chatDAO.sendText(text, uid);
     }
 
-    public void fetchMessages(String uid) {
-        chatDAO.fetchMessages(uid);
-    }
-
     public MutableLiveData<List<User>> getConvos(){
         return chatDAO.getMessagesAndChats();
     }
@@ -40,6 +36,11 @@ public class SharedChatViewModel extends ViewModel {
     }
 
     public void subscribeToMessages(String uid) {
+        System.out.println("Subscribed to messages***************************");
         chatDAO.subscribeToMessages(uid);
+    }
+
+    public void fetchMessages(String uid) {
+        chatDAO.fetchMessages(uid);
     }
 }

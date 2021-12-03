@@ -219,6 +219,7 @@ public class ChatDAO {
 
     //good lord what the f*ck is this
     public void fetchMessages(String uid) {
+        System.out.println("Called fetch********************");
         messages.setValue(new ArrayList<>());
         List<String> query = new ArrayList<>();
         query.add(uid);
@@ -299,7 +300,6 @@ public class ChatDAO {
                 });
     }
 
-    //this doesn't work like i wanted it to?
     public void subscribeToMessages(String uid) {
         List<String> query = new ArrayList<>();
         query.add(uid);
